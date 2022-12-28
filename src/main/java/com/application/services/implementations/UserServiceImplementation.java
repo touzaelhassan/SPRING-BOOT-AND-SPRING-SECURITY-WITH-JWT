@@ -6,13 +6,14 @@ import com.application.repositories.RoleRepository;
 import com.application.repositories.UserRepository;
 import com.application.services.specifications.UserServiceSpecification;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service("userServiceBean")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Transactional
 public class UserServiceImplementation implements UserServiceSpecification {
 
