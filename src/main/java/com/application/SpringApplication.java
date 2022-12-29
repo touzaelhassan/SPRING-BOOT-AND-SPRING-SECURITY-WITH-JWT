@@ -7,7 +7,6 @@ import com.application.services.specifications.ProductServiceSpecification;
 import com.application.services.specifications.RoleServiceSpecification;
 import com.application.services.specifications.UserServiceSpecification;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,10 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
 
 @SpringBootApplication
-public class SpringBootApiEndpointsApplication {
+public class SpringApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootApiEndpointsApplication.class, args);
+        org.springframework.boot.SpringApplication.run(SpringApplication.class, args);
     }
 
     @Bean
