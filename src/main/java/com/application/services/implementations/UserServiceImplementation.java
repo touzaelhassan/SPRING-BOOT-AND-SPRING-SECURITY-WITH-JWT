@@ -40,7 +40,7 @@ public class UserServiceImplementation implements UserServiceSpecification, User
     }
 
     @Override
-    public User saveUser(User user) {
+    public User addUser(User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepositoryBean.save(user);

@@ -31,23 +31,23 @@ public class SpringBootApiEndpointsApplication {
 
         return args -> {
 
-            roleServiceBean.saveRole(new Role(null, "USER"));
-            roleServiceBean.saveRole(new Role(null, "MANAGER"));
-            roleServiceBean.saveRole(new Role(null, "ADMIN"));
+            roleServiceBean.saveRole(new Role( "USER"));
+            roleServiceBean.saveRole(new Role("MANAGER"));
+            roleServiceBean.saveRole(new Role("ADMIN"));
 
-            userServiceBean.saveUser(new User(null, "admin","admin","admin@gmail.com","123456",new ArrayList<>()));
-            userServiceBean.saveUser(new User(null, "user1","username1","user1@gmail.com","123456",new ArrayList<>()));
-            userServiceBean.saveUser(new User(null, "user2","username2","user2@gmail.com","123456",new ArrayList<>()));
-            userServiceBean.saveUser(new User(null, "user3","username3","user3@gmail.com","123456",new ArrayList<>()));
+            userServiceBean.addUser(new User( "admin","admin","admin@gmail.com","123456",new ArrayList<>()));
+            userServiceBean.addUser(new User("user1","username1","user1@gmail.com","123456",new ArrayList<>()));
+            userServiceBean.addUser(new User("user2","username2","user2@gmail.com","123456",new ArrayList<>()));
+            userServiceBean.addUser(new User("user3","username3","user3@gmail.com","123456",new ArrayList<>()));
 
             userServiceBean.addRoleToUser("admin","ADMIN");
             userServiceBean.addRoleToUser("username1","MANAGER");
             userServiceBean.addRoleToUser("username2","USER");
             userServiceBean.addRoleToUser("username3","USER");
 
-            productServiceBean.addProduct(new Product("product1","454768","The description for product 1", 55.99F,50));
-            productServiceBean.addProduct(new Product("product2","454768","The description for product 1", 35.45F,75));
-            productServiceBean.addProduct(new Product("product3","454768","The description for product 1", 20.10F,100));
+            productServiceBean.addProduct(new Product("Product1","454768","The description for product 1", 55.99F,50));
+            productServiceBean.addProduct(new Product("Product2","454768","The description for product 1", 35.45F,75));
+            productServiceBean.addProduct(new Product("Product3","454768","The description for product 1", 20.10F,100));
 
         };
 

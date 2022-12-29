@@ -33,8 +33,8 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers(){ return ResponseEntity.ok().body(userServiceBean.getUsers()); }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<User> saveUser(@RequestBody User user){ return ResponseEntity.ok().body(userServiceBean.saveUser(user)); }
+    @PostMapping("/user/add")
+    public ResponseEntity<User> saveUser(@RequestBody User user){ return ResponseEntity.ok().body(userServiceBean.addUser(user)); }
 
     @PostMapping("/user/add-role")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm roleToUserForm  ){
