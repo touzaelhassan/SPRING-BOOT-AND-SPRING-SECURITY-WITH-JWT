@@ -9,7 +9,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,24 +23,22 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UserController {
 
     private final UserServiceSpecification userServiceBean;
 
+    @Autowired
+    public UserController(UserServiceSpecification userServiceBean) { this.userServiceBean = userServiceBean; }
+
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers(){ return ResponseEntity.ok().body(userServiceBean.getUsers()); }
-
     @PostMapping("/user/add")
     public ResponseEntity<User> saveUser(@RequestBody User user){ return ResponseEntity.ok().body(userServiceBean.addUser(user)); }
-
     @PostMapping("/user/add-role")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm roleToUserForm  ){
-
         userServiceBean.addRoleToUser(roleToUserForm.getUsername(), roleToUserForm.getRoleName());
         return ResponseEntity.ok().build();
-
     }
 
     @GetMapping("/token/refresh")
@@ -66,12 +64,9 @@ public class UserController {
                     .sign(algorithm);
 
             Map<String, String> tokens = new HashMap<>();
-
             tokens.put("access_token", accessToken);
             tokens.put("refresh_token", refreshToken);
-
             response.setContentType(APPLICATION_JSON_VALUE);
-
             new ObjectMapper().writeValue(response.getOutputStream(), tokens);
 
         }else{
@@ -79,6 +74,7 @@ public class UserController {
             throw new RuntimeException("Refresh token is missing");
 
         }
+
     }
 
 }

@@ -19,7 +19,6 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getProducts(){ return productServiceBean.getProducts(); }
-
     @PostMapping("/product/add")
     public Product addProduct(@RequestBody Product product){ return  productServiceBean.addProduct(product); }
 

@@ -3,7 +3,6 @@ package com.application.security.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +20,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -68,4 +69,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     }
 
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        response.setStatus(400);
+        response.getWriter().println("Failed To Login : Bad Credentials");
+    }
 }

@@ -8,4 +8,5 @@ public interface RoleServiceSpecification {
 
     Role saveRole(Role role);
     List<Role> getRoles();
+
 }
