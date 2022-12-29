@@ -1,7 +1,9 @@
 package com.application;
 
+import com.application.entities.Product;
 import com.application.entities.Role;
 import com.application.entities.User;
+import com.application.services.specifications.ProductServiceSpecification;
 import com.application.services.specifications.RoleServiceSpecification;
 import com.application.services.specifications.UserServiceSpecification;
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +23,11 @@ public class SpringBootApiEndpointsApplication {
     }
 
     @Bean
-    CommandLineRunner run(UserServiceSpecification userServiceBean, RoleServiceSpecification roleServiceBean){
+    CommandLineRunner run(
+            UserServiceSpecification userServiceBean,
+            RoleServiceSpecification roleServiceBean,
+            ProductServiceSpecification productServiceBean
+            ){
 
         return args -> {
 
@@ -29,18 +35,19 @@ public class SpringBootApiEndpointsApplication {
             roleServiceBean.saveRole(new Role(null, "MANAGER"));
             roleServiceBean.saveRole(new Role(null, "ADMIN"));
 
+            userServiceBean.saveUser(new User(null, "admin","admin","admin@gmail.com","123456",new ArrayList<>()));
             userServiceBean.saveUser(new User(null, "user1","username1","user1@gmail.com","123456",new ArrayList<>()));
             userServiceBean.saveUser(new User(null, "user2","username2","user2@gmail.com","123456",new ArrayList<>()));
             userServiceBean.saveUser(new User(null, "user3","username3","user3@gmail.com","123456",new ArrayList<>()));
 
-            userServiceBean.addRoleToUser("username1","ADMIN");
+            userServiceBean.addRoleToUser("admin","ADMIN");
             userServiceBean.addRoleToUser("username1","MANAGER");
-            userServiceBean.addRoleToUser("username1","USER");
-
-            userServiceBean.addRoleToUser("username2","MANAGER");
             userServiceBean.addRoleToUser("username2","USER");
-
             userServiceBean.addRoleToUser("username3","USER");
+
+            productServiceBean.addProduct(new Product("product1","454768","The description for product 1", 55.99F,50));
+            productServiceBean.addProduct(new Product("product2","454768","The description for product 1", 35.45F,75));
+            productServiceBean.addProduct(new Product("product3","454768","The description for product 1", 20.10F,100));
 
         };
 
